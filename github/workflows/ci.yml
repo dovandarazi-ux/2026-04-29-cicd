@@ -1,0 +1,25 @@
+on:
+  push:
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello Wolrd!"
+
+test:
+  name: Print Hello
+  runs-on: ubuntu-latest
+  steps:
+    - name: Check out repo
+      run: actions/checkout@v6 #this is an action written by github the v6 is called a tab
+    - name: Install Python
+      uses: actions/setup-python@v6
+      with:
+        python_version: "3.14" #installs python 3.14 and now we have it all the times. check guthub repositories for more repos
+    - name: Install package
+      run: pip install .[test]
+    - name: Run Pytest
+      run: pytest -vv
+
+      
